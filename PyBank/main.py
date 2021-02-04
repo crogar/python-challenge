@@ -35,7 +35,7 @@ def calc_changes(data_set,mode='average'):
         raise ValueError(f"{mode} is not a supported parameter")
     
 def main():
-    with open(budget_data, newline='') as csvfile:
+    with open(budget_data, newline='') as csvfile: # reading CSV File and storing the rows into a list
         reader = csv.DictReader(csvfile)
         for row in reader:
             month = months(row['Date'], float(row['Profit/Losses']))  # appending monht of type months(namedTuple)
