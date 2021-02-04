@@ -18,7 +18,7 @@ def analysis_dataset(data_set):
         candidates[candidate.Candidate] += 1
     for votes in candidates.values():
         total_votes += votes
-    print(total)
+    print(total_votes)
 
 # The percentage of votes each candidate won
 
