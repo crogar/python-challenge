@@ -41,28 +41,28 @@ def main():
             month = months(row['Date'], float(row['Profit/Losses']))  # appending monht of type months(namedTuple)
             dataset.append(month)
 
+    print_out.append("Financial Analysis")
+    print_out.append("----------------------------")
     # obtaining The total number of months included in the dataset
-    print(f"Total Months: {len(dataset)}")
-    print_out.append(f"Total Months: {len(dataset)}\n")
+    print_out.append(f"Total Months: {len(dataset)}")
     # obtaining The net total amount of "Profit/Losses" over the entire period
     net_total = sumatory(dataset)
-    print(f"Total: ${net_total}")
-    print_out.append(f"Total: ${net_total}\n")
+    print_out.append(f"Total: ${net_total}")
     # Calculates the changes in "Profit/Losses" over the entire period, then returns the average of those changes
     average_change = calc_changes(dataset, mode='average')
-    print(f'Average Change: ${average_change}')
-    print_out.append(f'Average Change: ${average_change}\n')
+    print_out.append(f'Average Change: ${average_change}')
     # Calculates The greatest increase in profits (date and amount) over the entire period
     GRI = calc_changes(dataset,mode="GRI")    # Receiving a tuple containing the month and the GRI change i.e ('Sep-2016', -665765.0)
-    print(f'Greatest Increase in Profits: {GRI[0]} (${GRI[1]})')
-    print_out.append(f'Greatest Increase in Profits: {GRI[0]} (${GRI[1]})\n')
+    print_out.append(f'Greatest Increase in Profits: {GRI[0]} (${GRI[1]})')
     # calculates The greatest decrease in losses (date and amount) over the entire period
     GRD = calc_changes(dataset,mode="GRD")    # Receiving a tuple containing the month and the GRI change i.e ('Sep-2016', -665765.0)
-    print(f'Greatest Decrease in Profits: {GRD[0]} (${GRD[1]})')
     print_out.append(f'Greatest Decrease in Profits: {GRD[0]} (${GRD[1]})')
+    for line in print_out:
+        print(line)
 
     with open(analysis, 'w') as out_file:  # Generating analysis.txt printing out same result as in the console
-        out_file.writelines(print_out)
+        for line in print_out:
+            out_file.write(line + "\n")
 
 if __name__ == '__main__':
     main()
