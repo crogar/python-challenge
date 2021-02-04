@@ -15,11 +15,11 @@ def analysis_dataset(data_set):
     votes= []
     for candidate in data_set:
         candidates[candidate.Candidate] += 1
-    candidates = dict(sorted(candidates,key=lambda i: i[1]))
+    candidates = dict(sorted(candidates.items(),key=lambda i: i[1], reverse=True))
     # The total number of votes cast
     total_votes = len(data_set)
     for k,v in candidates.items():
-        percentage = (v/total_votes)*100
+        percentage = "{0:.3f}%".format((v/total_votes)*100)
         votes.append(f"{k} {percentage} ({v})")
     print(votes)
 # The percentage of votes each candidate won
