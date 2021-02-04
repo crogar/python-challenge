@@ -11,24 +11,24 @@ print_out = []
 votes = namedtuple("votes","Voter_ID County Candidate")  # using namedtuple to keep list organized 
 
 def analysis_dataset(data_set):
+    print_out.append("Election Results")
+    print_out.append('-------------------------')    
     candidates = defaultdict(lambda: 0)
-    votes= []
     for candidate in data_set:
         candidates[candidate.Candidate] += 1
+    # sorting Dict out based on Votes 
     candidates = dict(sorted(candidates.items(),key=lambda i: i[1], reverse=True))
     # The total number of votes cast
     total_votes = len(data_set)
+    print_out.append(f"Total Votes:{total_votes}")
+    print_out.append('-------------------------')
     for k,v in candidates.items():
+        # The percentage of votes each candidate won
         percentage = "{0:.3f}%".format((v/total_votes)*100)
-        votes.append(f"{k} {percentage} ({v})")
-    print(votes)
-# The percentage of votes each candidate won
-
-
-# The total number of votes each candidate won
-
-
-# The winner of the election based on popular vote.
+        print_out.append(f"{k} {percentage} ({v})")
+    print_out.append('-------------------------')  
+    next(iter(candidates))
+    # The winner of the election based on popular vote. 
 
 def main():
     with open(election_data, newline='') as csvfile: # reading CSV File and storing the rows into a list
