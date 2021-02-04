@@ -34,32 +34,35 @@ def calc_changes(data_set,mode='average'):
     else:
         raise ValueError(f"{mode} is not a supported parameter")
     
-    
-with open(budget_data, newline='') as csvfile:
-    reader = csv.DictReader(csvfile)
-    for row in reader:
-        month = months(row['Date'], float(row['Profit/Losses']))  # appending monht of type months(namedTuple)
-        dataset.append(month)
+def main():
+    with open(budget_data, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            month = months(row['Date'], float(row['Profit/Losses']))  # appending monht of type months(namedTuple)
+            dataset.append(month)
 
-# obtaining The total number of months included in the dataset
-print(f"Total Months: {len(dataset)}")
-print_out.append(f"Total Months: {len(dataset)}\n")
-# obtaining The net total amount of "Profit/Losses" over the entire period
-net_total = sumatory(dataset)
-print(f"Total: ${net_total}")
-print_out.append(f"Total: ${net_total}\n")
-# Calculates the changes in "Profit/Losses" over the entire period, then returns the average of those changes
-average_change = calc_changes(dataset, mode='average')
-print(f'Average Change: ${average_change}')
-print_out.append(f'Average Change: ${average_change}\n')
-# Calculates The greatest increase in profits (date and amount) over the entire period
-GRI = calc_changes(dataset,mode="GRI")    # Receiving a tuple containing the month and the GRI change i.e ('Sep-2016', -665765.0)
-print(f'Greatest Increase in Profits: {GRI[0]} (${GRI[1]})')
-print_out.append(f'Greatest Increase in Profits: {GRI[0]} (${GRI[1]})\n')
-# calculates The greatest decrease in losses (date and amount) over the entire period
-GRD = calc_changes(dataset,mode="GRD")    # Receiving a tuple containing the month and the GRI change i.e ('Sep-2016', -665765.0)
-print(f'Greatest Decrease in Profits: {GRD[0]} (${GRD[1]})')
-print_out.append(f'Greatest Decrease in Profits: {GRD[0]} (${GRD[1]})')
+    # obtaining The total number of months included in the dataset
+    print(f"Total Months: {len(dataset)}")
+    print_out.append(f"Total Months: {len(dataset)}\n")
+    # obtaining The net total amount of "Profit/Losses" over the entire period
+    net_total = sumatory(dataset)
+    print(f"Total: ${net_total}")
+    print_out.append(f"Total: ${net_total}\n")
+    # Calculates the changes in "Profit/Losses" over the entire period, then returns the average of those changes
+    average_change = calc_changes(dataset, mode='average')
+    print(f'Average Change: ${average_change}')
+    print_out.append(f'Average Change: ${average_change}\n')
+    # Calculates The greatest increase in profits (date and amount) over the entire period
+    GRI = calc_changes(dataset,mode="GRI")    # Receiving a tuple containing the month and the GRI change i.e ('Sep-2016', -665765.0)
+    print(f'Greatest Increase in Profits: {GRI[0]} (${GRI[1]})')
+    print_out.append(f'Greatest Increase in Profits: {GRI[0]} (${GRI[1]})\n')
+    # calculates The greatest decrease in losses (date and amount) over the entire period
+    GRD = calc_changes(dataset,mode="GRD")    # Receiving a tuple containing the month and the GRI change i.e ('Sep-2016', -665765.0)
+    print(f'Greatest Decrease in Profits: {GRD[0]} (${GRD[1]})')
+    print_out.append(f'Greatest Decrease in Profits: {GRD[0]} (${GRD[1]})')
 
-with open(analysis, 'w') as out_file:  # Generating analysis.txt printing out same result as in the console
-    out_file.writelines(print_out)
+    with open(analysis, 'w') as out_file:  # Generating analysis.txt printing out same result as in the console
+        out_file.writelines(print_out)
+
+if __name__ == '__main__':
+    main()
