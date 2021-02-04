@@ -10,7 +10,7 @@ dataset = []
 print_out = []
 months = namedtuple("months","Date profit_losses")  # using namedtuple to keep list organized 
 
-def sumatory(data_set): 
+def summation(data_set): 
     ''' This function receives a list containing Profit/Losses will add them up
         it will return the net total amount using index 1 to locate that data
     '''
@@ -46,7 +46,7 @@ def main():
     # obtaining The total number of months included in the dataset
     print_out.append(f"Total Months: {len(dataset)}")
     # obtaining The net total amount of "Profit/Losses" over the entire period
-    net_total = sumatory(dataset)
+    net_total = summation(dataset)
     print_out.append(f"Total: ${net_total}")
     # Calculates the changes in "Profit/Losses" over the entire period, then returns the average of those changes
     average_change = calc_changes(dataset, mode='average')
