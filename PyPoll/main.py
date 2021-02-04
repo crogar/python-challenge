@@ -8,18 +8,20 @@ analysis = os.path.join(os.getcwd(),'Analysis/analysis.txt')
 #Declaring variables to store the data from the CSV file
 dataset = []
 print_out = []
-candidates = defaultdict(lambda: 0)
-total_votes = 0
-
 votes = namedtuple("votes","Voter_ID County Candidate")  # using namedtuple to keep list organized 
 
 def analysis_dataset(data_set):
+    candidates = defaultdict(lambda: 0)
+    votes= []
     for candidate in data_set:
         candidates[candidate.Candidate] += 1
-    for votes in candidates.values():
-        total_votes += votes
-    print(total_votes)
-
+    candidates = dict(sorted(candidates,key=lambda i: i[1]))
+    # The total number of votes cast
+    total_votes = len(data_set)
+    for k,v in candidates.items():
+        percentage = (v/total_votes)*100
+        votes.append(f"{k} {percentage} ({v})")
+    print(votes)
 # The percentage of votes each candidate won
 
 
@@ -32,10 +34,10 @@ def main():
     with open(election_data, newline='') as csvfile: # reading CSV File and storing the rows into a list
         reader = csv.DictReader(csvfile)
         for row in reader:
-            vote = votes(row['Voter ID'], row['County'], row['Candidate'])  # appending monht of type months(namedTuple)
+            vote = votes(row['Voter ID'], row['County'], row['Candidate'])  # appending canditate of type Candidates(namedTuple)
             dataset.append(vote)
     
-    # The total number of votes cast
+   
     print(len(dataset))
     # A complete list of candidates who received votes
     analysis_dataset(dataset)
