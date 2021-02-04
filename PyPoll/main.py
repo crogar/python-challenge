@@ -34,6 +34,11 @@ def analysis_dataset(data_set):
     print_out.append('-------------------------')     
     for line in print_out:
         print(line)
+    # exports a text file with the results.
+    with open(analysis, 'w+') as out_file:  # Generating analysis.txt printing out same result as in the console
+        for line in print_out:
+            line = line + "\n"
+            out_file.write(line)
 
 def main():
     with open(election_data, newline='') as csvfile: # reading CSV File and storing the rows into a list
@@ -45,5 +50,5 @@ def main():
     # A complete list of candidates who received votes
     analysis_dataset(dataset)
 
-
-main()
+if __name__ == '__main__':
+    main()
