@@ -14,7 +14,7 @@ def analysis_dataset(data_set):
     candidates = defaultdict(lambda: 0)
     print_out.append("Election Results")
     print_out.append('-------------------------')    
-    # using defaultdict allows to cont the votes for each candidate without having to worry about the initial value
+    # using defaultdict allows to count the votes for each candidate without having to worry about the initial value
     for candidate in data_set:
         candidates[candidate.Candidate] += 1
     # sorting Dict out based on Votes 
