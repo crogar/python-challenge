@@ -61,7 +61,7 @@ def main():
     with open(analysis_output, 'w', newline='') as out_file:  # Generating analysis.txt printing out same result as in the console
         for line in print_out:
             print(line)
-            out_file.write(line + '\n') # using escape codes \n so this way python will add a new line after wrinting a new row
+            out_file.write(line + '\n') # using escape code \n so this way python will add a new line after wrinting a new row
 
 if __name__ == '__main__':
     main()
