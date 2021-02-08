@@ -10,16 +10,16 @@ dataset = []
 print_out = []
 votes = namedtuple("votes","Voter_ID County Name")  # using namedtuple to keep list organized 
 
-def analysis_dataset(data_set):
+def analysis_dataset():
     candidates = defaultdict(lambda: 0)
     print_out.append("Election Results")        # using defaultdict allows to count the votes for each candidate without having to worry about the initial value
     print_out.append('-------------------------')    
-    for candidate in data_set:
+    for candidate in dataset:
         candidates[candidate.Name] += 1
     # sorting Dict out based on Votes 
     candidates = dict(sorted(candidates.items(),key=lambda i: i[1], reverse=True))
     # The total number of votes cast
-    total_votes = len(data_set)
+    total_votes = len(dataset)
     print_out.append(f"Total Votes: {total_votes}")
     print_out.append('-------------------------')
     for k,v in candidates.items():
@@ -46,7 +46,7 @@ def main():
             vote = votes(row['Voter ID'], row['County'], row['Candidate'])  # appending canditate of type Candidates(namedTuple)
             dataset.append(vote)
     # A complete list of candidates who received votes
-    analysis_dataset(dataset)
+    analysis_dataset()
 
 if __name__ == '__main__':
     main()
