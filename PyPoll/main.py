@@ -8,15 +8,14 @@ analysis = os.path.join(os.getcwd(),'Analysis/analysis.txt')
 #Declaring variables to store the data from the CSV file
 dataset = []
 print_out = []
-votes = namedtuple("votes","Voter_ID County Candidate")  # using namedtuple to keep list organized 
+votes = namedtuple("votes","Voter_ID County Name")  # using namedtuple to keep list organized 
 
 def analysis_dataset(data_set):
     candidates = defaultdict(lambda: 0)
-    print_out.append("Election Results")
+    print_out.append("Election Results")        # using defaultdict allows to count the votes for each candidate without having to worry about the initial value
     print_out.append('-------------------------')    
-    # using defaultdict allows to count the votes for each candidate without having to worry about the initial value
     for candidate in data_set:
-        candidates[candidate.Candidate] += 1
+        candidates[candidate.Name] += 1
     # sorting Dict out based on Votes 
     candidates = dict(sorted(candidates.items(),key=lambda i: i[1], reverse=True))
     # The total number of votes cast
