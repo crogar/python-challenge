@@ -1,5 +1,4 @@
-import os
-import csv
+import os,csv
 from collections import namedtuple
 
 #reference to budget_data in ./Resources/budget_data.cs
@@ -30,7 +29,7 @@ def calc_changes(data_,mode='average'):
     elif  mode == 'GRI':
         return max(changes, key = lambda i: i[1])  # using Lambda function to tell MAX to use The second element in tuple as comparison 
     elif mode == 'GRD':
-        return min (changes, key = lambda i: i[1]) # using Lambda function to tell MAX to use The second element in tuple as comparison 
+        return min (changes, key = lambda i: i[1]) # using Lambda function to tell MIN to use The second element in tuple as comparison 
     else:
         raise ValueError(f"{mode} is not a supported parameter") # if user doesn't provide a valid mode, we raise a ValueError
     
