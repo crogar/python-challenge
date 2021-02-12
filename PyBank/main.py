@@ -1,8 +1,7 @@
 import os,csv
 from collections import namedtuple
 
-#reference to budget_data in ./Resources/budget_data.cs
-budget_data = os.path.join(os.getcwd(),'Resources/budget_data.csv')
+budget_data = os.path.join(os.getcwd(),'Resources/budget_data.csv') #reference to budget_data in ./Resources/budget_data.cs
 analysis_output = os.path.join(os.getcwd(),'Analysis/analysis.txt')
 #Declaring variables to store the data from the CSV file
 data = []
