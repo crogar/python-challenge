@@ -1,7 +1,7 @@
 import os, csv
 from collections import defaultdict
 
-election_data = os.path.join(os.getcwd(),'Resources/election_data.csv') #reference to budget_data in ./Resources/budget_data.cs
+election_data = os.path.join(os.getcwd(),'Resources/election_data.csv') #reference to election_data in ./Resources/election_data.csv.cs
 analysis = os.path.join(os.getcwd(),'Analysis/analysis.txt')  # output path.
 #Declaring variables to store the data from the CSV file
 print_out = []
